@@ -1,9 +1,10 @@
 $(document).ready(function () {
     var allSudoku = [
         "000070040028000617000000090000000000000000000206004005182600073394000056765000000",
+        "000070040028000617000000090000000000000000000206004005182600073394000056765123456",
     ];
 
-    var soduku = [
+    var sudoku = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -19,20 +20,35 @@ $(document).ready(function () {
         var dice = Math.floor(Math.random() * allSudoku.length)
         for (var i = 0; i < 9; i++) {
             for (var j = 0; j < 9; j++) {
-                soduku[i][j] = parseInt(allSudoku[dice][i * 9 + j])
+                sudoku[i][j] = parseInt(allSudoku[dice][i * 9 + j])
             }
         }
     }
 
     function displaySudoku() {
         generateSudoku()
-        $(sudokuGame).html(soduku.join('\<br>'))
+        $(sudokuGame).html(sudoku.join('\<br>'))
     }
 
+    // function displaySudoku() {
+
+    //     generateSudoku();
+
+    //     var i = 1;
+    //     while (i < sudoku.length) {
+    //         if (i === 8) {
+    //             $(sudokuGameTest).html("<td>")
+    //             console.log("je passe la")
+    //         }
+    //         console.log("ici")
+    //         $(sudokuGameTest).html('\<tr>')
+    //         i++;
+    //     }
+    // }
 
     function isRowValid(line, number) {
         for (var i = 0; i < 9; i++) {
-            if (soduku[line][i] === number) {
+            if (sudoku[line][i] === number) {
                 return false;
             }
         }
@@ -41,7 +57,7 @@ $(document).ready(function () {
 
     function isColumnValid(column, number) {
         for (var i = 0; i < 9; i++) {
-            if (soduku[i][column] === number) {
+            if (sudoku[i][column] === number) {
                 return false;
             }
         }
@@ -74,8 +90,8 @@ $(document).ready(function () {
 
         for (var i = startI; i < startI + 3; i++) {
             for (var j = startJ; j < startJ + 3; j++) {
-                console.log(soduku[i][j])
-                if (soduku[i][j] === number) {
+                console.log(sudoku[i][j])
+                if (sudoku[i][j] === number) {
                     return false;
                 }
             }
@@ -83,22 +99,16 @@ $(document).ready(function () {
         return true;
     }
 
-    function isValid() {
-
-        for (var i = 0; i < 9; i++) {
-            for (var j = 0; j < 9; j++) {
-                var randomNumber = Math.floor(Math.random() * 9 + 1)
-                if (sudoku[i][j] === 0) {
-                    if (isRowValid(j, randomNumber) === true) {
-
-                    } else {
-
-                    }
-                } else {
-
-                }
-            }
+    function isValid(line, column, number) {
+        if (isRowValid(line, number) && isColumnValid(column, number) && isBlockValid(line, column, number)) {
+            return true;
+        } else {
+            return false;
         }
+    }
+
+    function solve() {
+
     }
 
     displaySudoku()
@@ -108,5 +118,5 @@ $(document).ready(function () {
         displaySudoku()
     })
 
-    console.log(isBlockValid(0, 3, 8))
+    console.log(isValid(0, 0, 2))
 })

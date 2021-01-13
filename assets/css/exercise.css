@@ -27,7 +27,6 @@ body {
 #exercise {
     position: relative;
     background-color: #FFFFFF;
-    height: 300px;
     padding: 20px;
     color: #000000;
 }
@@ -48,24 +47,44 @@ body {
     background-size: 600px;
 }
 
-table {
-    margin:1em auto;
-  }
-  td {
-    height:30px;
-    width:30px;
-    border:1px solid;
-    text-align:center;
-  }
-  td:first-child {
-    border-left:solid;
-  }
-  td:nth-child(3n) {
-    border-right:solid ;
-  }
-  tr:first-child {
-    border-top:solid;
-  }
-  tr:nth-child(3n) td {
-    border-bottom:solid ;
-  }
+.border-top-big {
+  border-top: 3px solid black;
+}
+
+.border-bottom-big {
+  border-bottom: 3px solid black;
+}
+
+.border-left-big {
+  border-left: 3px solid black;
+}
+
+.border-right-big {
+  border-right: 3px solid black;
+}
+
+.border-bottom-light {
+  border-bottom: 1px solid black;
+}
+
+.border-left-light {
+  border-left: 1px solid black;
+}
+
+.border-top-light {
+  border-top: 1px solid black;
+}
+
+.border-bottom-light {
+  border-bottom: 1px solid black;
+}
+
+.sudoku-grid {
+  max-width: 500px;
+  min-width: 500px;
+}
+
+.col-1 {
+  height: 40px;
+  padding-top: 7px;
+}

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var allSudoku = [
-        "000070040028000617000000090000000000000000000206004005182600073394000056765000000",
-        "000070040028000617000000090000000000000000000206004005182600073394000056765123456",
+        "176.8.243.286.1957...27.8162.13......8........................................195",
+        "3..7.85..79.3..42..5....873..7.43.5.2...7.6....1.8.9.7..6.1......................",
     ];
 
     var sudoku = [
@@ -20,31 +20,30 @@ $(document).ready(function () {
         var dice = Math.floor(Math.random() * allSudoku.length)
         for (var i = 0; i < 9; i++) {
             for (var j = 0; j < 9; j++) {
-                sudoku[i][j] = parseInt(allSudoku[dice][i * 9 + j])
+                if (allSudoku[dice][i * 9 + j] === "0" || allSudoku[dice][i * 9 + j] === ".") {
+                    sudoku[i][j] = " ";
+                } else {
+                    sudoku[i][j] = parseInt(allSudoku[dice][i * 9 + j])
+                }
             }
         }
     }
 
-    function displaySudoku() {
-        generateSudoku()
-        $(sudokuGame).html(sudoku.join('\<br>'))
-    }
-
-    // function displaySudoku() {
-
-    //     generateSudoku();
-
-    //     var i = 1;
-    //     while (i < sudoku.length) {
-    //         if (i === 8) {
-    //             $(sudokuGameTest).html("<td>")
-    //             console.log("je passe la")
-    //         }
-    //         console.log("ici")
-    //         $(sudokuGameTest).html('\<tr>')
-    //         i++;
-    //     }
+    // function displaySudoku2() {
+    //     generateSudoku()
+    //     $(sudokuGame).html(sudoku.join('\<br>'))
     // }
+
+    function displaySudoku() {
+
+        generateSudoku();
+
+        for (var i = 0; i < 9; i++) {
+            for (var j = 0; j < 9; j++) {
+                $(`#${i}-${j}`).html(sudoku[i][j])
+            }
+        }
+    }
 
     function isRowValid(line, number) {
         for (var i = 0; i < 9; i++) {
@@ -107,10 +106,25 @@ $(document).ready(function () {
         }
     }
 
-    function solve() {
+    // function solve() {
+    //     for (var i = 0; i < 9; i++) {
+    //         for (var j = 0; j < 9; j++) {
+    //             var randomNumber = Math.floor(Math.random() * 9 + 1)
 
-    }
-
+    //             if (sudoku[i][j] === 0) {
+    //                 if (isValid(i, j, randomNumber)) {
+    //                     sudoku[i][j] = randomNumber;
+    //                     console.log("Je lui ai attribué", randomNumber)
+    //                 } else {
+    //                     j--;
+    //                 }
+    //             } else {
+    //                 console.log("Je peux rien faire ici")
+    //             }
+    //         }
+    //     }
+    // }
+    // solve()
     displaySudoku()
 
     $(newSudoku).click(function () {
@@ -118,5 +132,5 @@ $(document).ready(function () {
         displaySudoku()
     })
 
-    console.log(isValid(0, 0, 2))
+    console.log(isValid(0, 0, 5))
 })

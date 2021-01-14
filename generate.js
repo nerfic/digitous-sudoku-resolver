@@ -29,11 +29,6 @@ $(document).ready(function () {
         }
     }
 
-    // function displaySudoku2() {
-    //     generateSudoku()
-    //     $(sudokuGame).html(sudoku.join('\<br>'))
-    // }
-
     function displaySudoku() {
 
         generateSudoku();
@@ -89,7 +84,6 @@ $(document).ready(function () {
 
         for (var i = startI; i < startI + 3; i++) {
             for (var j = startJ; j < startJ + 3; j++) {
-                console.log(sudoku[i][j])
                 if (sudoku[i][j] === number) {
                     return false;
                 }
@@ -106,31 +100,55 @@ $(document).ready(function () {
         }
     }
 
-    // function solve() {
-    //     for (var i = 0; i < 9; i++) {
-    //         for (var j = 0; j < 9; j++) {
-    //             var randomNumber = Math.floor(Math.random() * 9 + 1)
+    var temp = null;
 
-    //             if (sudoku[i][j] === 0) {
-    //                 if (isValid(i, j, randomNumber)) {
-    //                     sudoku[i][j] = randomNumber;
-    //                     console.log("Je lui ai attribué", randomNumber)
-    //                 } else {
-    //                     j--;
-    //                 }
-    //             } else {
-    //                 console.log("Je peux rien faire ici")
-    //             }
-    //         }
-    //     }
-    // }
-    // solve()
+    function solve() {
+        for (var i = 0; i < 9; i++) {
+            for (var j = 0; j < 9; j++) {
+                var hasPossibilitie = false;
+                var sudokuCopy = sudoku.map(function (arr) {
+                    return arr.slice();
+                });
+                for (var k = 1; k < 10; k++) {
+                    if (sudoku[i][j] === " ") {
+                        if (isValid(i, j, k)) {
+                            sudoku[i][j] = k;
+                            console.log("Je lui ai attribué", k, "au coordonnée", i, j)
+                            hasPossibilitie = true;
+                            if (solve()) {
+                                return true;
+                            } else {
+                                temp = sudokuCopy.map(function (arr) {
+                                    return arr.slice();
+                                })
+                            }
+                        } else {
+                            console.log("Pas possible d'attribuer", k, "au coordonnée", i, j)
+                        }
+                    } else {
+                        console.log("Il y a déjà une chiffre ici", "au coordonnée", i, j)
+                    }
+                }
+                if (!hasPossibilitie) {
+                    return false;
+                } else {
+
+                }
+            }
+        }
+        return true;
+    }
+
+
     displaySudoku()
 
-    $(newSudoku).click(function () {
-        generateSudoku()
-        displaySudoku()
-    })
+    $(solveSudoku).click(function () {
+        solve()
+    });
 
-    console.log(isValid(0, 0, 5))
+    $(newSudoku).click(function () {
+        displaySudoku();
+    });
+
+    console.log(isValid(0, 0, 5));
 })

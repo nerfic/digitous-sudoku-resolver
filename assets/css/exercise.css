@@ -48,35 +48,35 @@ body {
 }
 
 .border-top-big {
-  border-top: 3px solid black;
+  border-top: 3px solid #95a5a6;
 }
 
 .border-bottom-big {
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #95a5a6;
 }
 
 .border-left-big {
-  border-left: 3px solid black;
+  border-left: 3px solid #95a5a6;
 }
 
 .border-right-big {
-  border-right: 3px solid black;
+  border-right: 3px solid #95a5a6;
 }
 
 .border-bottom-light {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #95a5a6;
 }
 
 .border-left-light {
-  border-left: 1px solid black;
+  border-left: 1px solid #95a5a6;
 }
 
 .border-top-light {
-  border-top: 1px solid black;
+  border-top: 1px solid #95a5a6;
 }
 
 .border-bottom-light {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #95a5a6;
 }
 
 .sudoku-grid {
@@ -87,4 +87,36 @@ body {
 .col-1 {
   height: 40px;
   padding-top: 7px;
+}
+
+/* .col-1:hover {
+  background-color: #27ae60;
+  cursor: default;
+} */
+
+.line-column {
+  transition: all 0.3s ease-in-out;
+}
+
+.line-column:hover {
+  background-color: #27ae60;
+  cursor: default;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-success {
+  background-color: #27ae60;
+  border-radius: 1px;
+}
+
+.btn-warning {
+  background-color: #e67e22;
+  border-radius: 1px;
+  color: white;
+  border-color: #e8935a;
+}
+
+.btn-warning:hover {
+  background-color: #d35400;
+  color: white;
 }
